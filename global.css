@@ -1,3 +1,135 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 40% 99%;
+    --foreground: 225 62% 3%;
+    --muted: 45 19% 91%;
+    --muted-foreground: 45 1% 30%;
+    --popover: 225 40% 99%;
+    --popover-foreground: 225 62% 3%;
+    --card: 225 40% 99%;
+    --card-foreground: 225 62% 3%;
+    --border: 225 3% 92%;
+    --input: 225 3% 92%;
+    --tertiary: 225 89% 14%;
+    --primary: 144 61% 20%;
+    --primary-foreground: 0 0% 100%;
+    --tertiary-foreground: 225 89% 74%;
+    --secondary: 249 8% 91%;
+    --secondary-foreground: 249 8% 31%;
+    --accent: 249 13% 82%;
+    --accent-foreground: 249 13% 22%;
+    --destructive: 5 100% 31%;
+    --destructive-foreground: 5 100% 91%;
+    --ring: 225 89% 14%;
+    --radius: 0.5rem;
+  }
+
+  .dark:root {
+    --background: 0 0% 0%;
+    --foreground: 225 17% 100%;
+    --muted: 45 19% 9%;
+    --muted-foreground: 45 1% 70%;
+    --popover: 225 45% 3%;
+    --popover-foreground: 225 17% 100%;
+    --card: 225 45% 3%;
+    --card-foreground: 225 17% 100%;
+    --border: 225 3% 10%;
+    --input: 225 3% 10%;
+    --primary: 144 61% 20%;
+    --primary-foreground: 0 0% 100%;
+    --tertiary: 225 89% 14%;
+    --tertiary-foreground: 225 89% 74%;
+    --secondary: 249 18% 8%;
+    --secondary-foreground: 249 18% 68%;
+    --accent: 249 24% 17%;
+    --accent-foreground: 249 24% 77%;
+    --destructive: 5 100% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 225 89% 14%;
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.rdp-vhidden {
+  @apply hidden;
+}
+
+.ProseMirror {
+  min-height: 40vh;
+  max-height: 60vh;
+}
+
+.mde-header {
+  @apply border-b-border bg-background text-foreground;
+}
+.mde-text {
+  @apply bg-background text-foreground;
+}
+.mde-header .mde-tabs button.selected {
+  @apply h-auto rounded-md border-transparent !bg-primary px-3 py-1 text-primary-foreground;
+}
+.react-mde {
+  @apply border-border bg-background text-foreground;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+  .mdEditor a {
+    @apply cursor-pointer font-medium text-blue-600 hover:underline;
+  }
+  .mdEditor h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+  .mdEditor h2 {
+    @apply mt-8 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight;
+  }
+  .mdEditor h3 {
+    @apply mt-8 scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+  .mdEditor h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+  .mdEditor p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+  .mdEditor blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+  .mdEditor ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+  .mdEditor code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+  .mdEditor table {
+    @apply w-full;
+  }
+  .mdEditor tr {
+    @apply m-0 border-t p-0;
+  }
+  .mdEditor th {
+    @apply border bg-secondary px-4 py-2 text-left font-bold text-secondary-foreground [&[align=center]]:text-center [&[align=right]]:text-right;
+  }
+  .mdEditor td {
+    @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
+  }
+}
