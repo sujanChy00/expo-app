@@ -10,9 +10,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useGetUserProfile } from '@/api/profile-api';
 import { StackScreen } from '@/components/layout/screen-stack';
 import { NAV_THEME } from '@/constants/colors';
-import { isweb } from '@/constants/data';
+import { isNative, isweb } from '@/constants/data';
 import useAuthInit from '@/hooks/use-auth-init';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useFonts } from 'expo-font';
+import { FontAwesome } from '@expo/vector-icons';
+import * as Notifications from 'expo-notifications';
 
 import '../global.css';
 
@@ -21,6 +24,10 @@ import { useUser } from '@/hooks/use-user';
 import { setAndroidNavigationBar } from '@/lib/android-navigation-bar';
 import { AuthProvider, useDeviceToken, useLoading } from '@/providers/auth-provider';
 import { QueryProvider } from '@/providers/query-provider';
+import { CheckConnection } from '@/components/check-connection';
+import { UpdateApp } from '@/components/update-app';
+import { StatusBar } from 'expo-status-bar';
+import { registerForPushNotificationsAsync } from '@/api/notification';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -36,8 +43,18 @@ export { ErrorBoundary } from 'expo-router';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    ...FontAwesome.font,
+  });
   const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    if (error) {
+      throw error;
+    }
+  }, [error]);
 
   React.useEffect(() => {
     (async () => {
@@ -64,7 +81,7 @@ export default function RootLayout() {
     });
   }, []);
 
-  if (!isColorSchemeLoaded) {
+  if (!loaded || !isColorSchemeLoaded) {
     return null;
   }
 
@@ -84,7 +101,12 @@ export default function RootLayout() {
                 richColors
                 theme={colorScheme}
               />
-              <MainApp />
+              <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+
+              {isNative && <UpdateApp />}
+              <CheckConnection>
+                <MainApp />
+              </CheckConnection>
             </QueryProvider>
           </AuthProvider>
         </PortalProvider>
@@ -98,10 +120,80 @@ const MainApp = () => {
   useAuthInit();
   useGetUserProfile();
   useLanguageLoader();
-  const { colorScheme } = useColorScheme();
   const { loading } = useLoading();
   const { user } = useUser();
   const { setDeviceToken } = useDeviceToken();
+
+  const [appOpenedFromNotification, setAppOpenedFromNotification] = React.useState('');
+
+  const notificationListener = React.useRef<Notifications.EventSubscription>();
+  const responseListener = React.useRef<Notifications.EventSubscription>();
+
+  React.useEffect(() => {
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {}
+    );
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {}
+    );
+
+    return () => {
+      if (notificationListener.current) {
+        Notifications.removeNotificationSubscription(notificationListener.current);
+      }
+      if (responseListener.current) {
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (loading) return;
+    registerForPushNotificationsAsync(setDeviceToken);
+    let isMounted = true;
+
+    function redirect(notification: any) {
+      const url =
+        notification.request.trigger?.remoteMessage?.data?.url ||
+        notification.request.content?.data?.url ||
+        notification.request.trigger?.remoteMessage?.data?.deepLink ||
+        notification.request.content?.data?.deepLink;
+      if (url && appOpenedFromNotification !== url) {
+        if (user) {
+          router.push(url);
+        } else {
+          router.navigate({
+            pathname: '/auth/signin',
+            params: { next: url },
+          });
+        }
+        setAppOpenedFromNotification(url);
+      }
+    }
+
+    let subscription: Notifications.Subscription | null = null;
+
+    if (isNative) {
+      Notifications.getLastNotificationResponseAsync().then((response) => {
+        if (!isMounted || !response?.notification) {
+          return;
+        }
+        redirect(response?.notification);
+      });
+
+      subscription = Notifications.addNotificationResponseReceivedListener((response) => {
+        redirect(response.notification);
+      });
+    }
+
+    return () => {
+      isMounted = false;
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [loading]);
 
   return (
     <>

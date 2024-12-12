@@ -32,6 +32,7 @@ import { isweb } from '@/constants/data';
 import { transformOrderDetails } from '@/data/order/get-orders';
 import useI18n from '@/hooks/useI81n';
 import { dateTimestampFormatter } from '@/utils/date';
+import AppBack from '@/components/app-back';
 
 const OrderDetailScreen = () => {
   const accordionRef = useRef<View>(null);
@@ -89,7 +90,10 @@ const OrderDetailScreen = () => {
               userId={order?.userDetail?.id}
             />
           ),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <ScrollView

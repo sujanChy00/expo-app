@@ -34,7 +34,7 @@ const ChatDetails = () => {
   return (
     <View className="flex-1 bg-background">
       <ChatDetailsHeader isPending={isPending} userId={Number(id)} userName={user?.name} />
-      <View className="flex-1 p-3 md:p-6">
+      <View className="flex-1 p-3 md:p-6 md:pb-3">
         <ChatArea
           messages={messages}
           isFetchingNextPage={isFetchingNextPage}

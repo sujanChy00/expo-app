@@ -9,6 +9,7 @@ import { MessageActions } from '@/components/messages/message-actions';
 import { P } from '@/components/ui/typography';
 import { isIOS, screenHeaderShown } from '@/constants/data';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AppBack from '@/components/app-back';
 
 const MessagesDetailsPage = () => {
   const { id } = useLocalSearchParams<{
@@ -44,11 +45,14 @@ const MessagesDetailsPage = () => {
   const canReply = data?.pages[0]?.canReply;
 
   return (
-    <View className="flex-1 bg-background" style={{ marginBottom: bottom }}>
+    <View className="flex-1 bg-background" style={{ paddingBottom: bottom }}>
       <Stack.Screen
         options={{
           title: user?.name,
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <KeyboardAvoidingView

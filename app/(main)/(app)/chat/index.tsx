@@ -7,7 +7,7 @@ import { MessageSearchInput } from '@/components/messages/message-search-input';
 const ChatScreen = () => {
   const [text, setText] = useState('');
   return (
-    <View className="xs:hidden flex flex-1 gap-6 bg-background p-3">
+    <View className="flex flex-1 gap-6 bg-background p-3 xs:hidden">
       <MessageSearchInput setText={setText} />
       <MessagesList filterText={text} />
     </View>
