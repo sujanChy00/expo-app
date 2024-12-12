@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
-import { OrderTrackingTable } from '../order/order-tracking-table';
+import { OrderTrackingTable } from '../orders/order-tracking-table';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import { Separator } from '../ui/separator';

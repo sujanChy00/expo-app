@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { View } from 'react-native';
 
-import { OrderTrackingDetailsModal } from '../order/order-tracking-details-modal';
+import { OrderTrackingDetailsModal } from '../orders/order-tracking-details-modal';
 import { DataTable } from '../ui/data-table';
 import { SortShipments } from './sort-shipments';
 
