@@ -8,11 +8,13 @@ import { ChatArea } from '@/components/messages/chat-area';
 import { MessageActions } from '@/components/messages/message-actions';
 import { P } from '@/components/ui/typography';
 import { isIOS, screenHeaderShown } from '@/constants/data';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const MessagesDetailsPage = () => {
   const { id } = useLocalSearchParams<{
     id: string;
   }>();
+  const { bottom } = useSafeAreaInsets();
   const { mutateAsync: sendMessage, isPending: isSending, variables } = useSendMessage();
   const { data, isPending, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGetUserMessagesById(Number(id));
@@ -42,7 +44,7 @@ const MessagesDetailsPage = () => {
   const canReply = data?.pages[0]?.canReply;
 
   return (
-    <View className="flex-1 bg-background">
+    <View className="flex-1 bg-background" style={{ marginBottom: bottom }}>
       <Stack.Screen
         options={{
           title: user?.name,
@@ -53,7 +55,7 @@ const MessagesDetailsPage = () => {
         className="flex-1 bg-background p-3"
         keyboardVerticalOffset={isIOS ? 80 : 0}
         behavior={isIOS ? 'padding' : 'height'}>
-        <View className="flex-1 pb-20">
+        <View className="flex-1 pb-5">
           <ChatArea
             isFetchingNextPage={isFetchingNextPage}
             messages={messages}
