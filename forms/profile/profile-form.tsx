@@ -12,6 +12,7 @@ import { Text } from '@/components/ui/text';
 import useI18n from '@/hooks/useI81n';
 import { cn } from '@/lib/utils';
 import { handleKeyPress } from '@/utils/handle-enter-key-press';
+import { ProfileImagePicker } from '@/components/profile/profile-image-picker';
 
 type Props = {
   goBack?: boolean;
@@ -32,15 +33,15 @@ export const ProfileForm = ({ onClose, goBack, className }: Props) => {
     useProfileForm(onClose);
   const { getText } = useI18n();
   return (
-    <View className={cn('bg-background native:pb-5 flex-1 pb-16 pt-20 web:pb-0', className)}>
+    <View className={cn('native:pb-5 flex-1 bg-background pb-16 pt-20 web:pb-0', className)}>
       <View className="flex sm:hidden" />
       <View>
-        {/* <ProfileImagePicker
+        <ProfileImagePicker
           onUpload={handleImageUpload}
           isLoading={isProfileImagePending}
           alt={user?.profileDetails.shopAssistantName || 'profile'}
           image={user?.profileDetails.shopAssistantPhotoUrl}
-        /> */}
+        />
         <FormProvider {...form}>
           <View className="gap-y-4 pb-4 pt-20">
             <TextInput
