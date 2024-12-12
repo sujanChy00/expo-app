@@ -124,7 +124,7 @@ export const ImageModal = (props: Props) => {
               alt={props.alt || ''}
             />
           </Animated.View>
-          <TouchableOpacity className="pt-10" onPress={handleClose} style={Styles.close}>
+          <TouchableOpacity className="ios:pt-20 pt-10" onPress={handleClose} style={Styles.close}>
             <XIcon color="#fff" />
           </TouchableOpacity>
 
