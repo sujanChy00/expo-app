@@ -30,7 +30,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: 'orders',
-    href: '/order',
+    href: '/orders',
     icon: ShoppingCart,
   },
   {

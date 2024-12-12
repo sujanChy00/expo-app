@@ -1,12 +1,19 @@
-// import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-// import { lastDayOfMonth, startOfMonth } from 'date-fns';
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { lastDayOfMonth, startOfMonth } from 'date-fns';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { View } from 'react-native';
+import { Check, ChevronDown } from 'lucide-react-native';
+import { useRef, useState } from 'react';
+import { Platform, Pressable, TouchableOpacity, View } from 'react-native';
 
-// import { AppBottomSheet } from '../app-bottom-sheet';
-// import { DateRangePicker } from '../ui/date-range-picker/date-range-picker';
+import { AppBottomSheet } from '../app-bottom-sheet';
+import { Button } from '../ui/button';
+import { DateRangePicker } from '../ui/date-range-picker/date-range-picker';
+import { P } from '../ui/typography';
 
+import { orderSortOptions } from '@/constants/data';
 import useI18n from '@/hooks/useI81n';
+import { ILanguageTexts } from '@/types/ILanguageTexts';
+import { dateOnlyFormatter } from '@/utils/date';
 
 /**
  *
@@ -23,35 +30,35 @@ export const OrderFilters = () => {
     startDate?: string;
     endDate?: string;
   }>();
-  // const [date, setDate] = useState({
-  //   startDate: params?.startDate ? startOfMonth(new Date()) : startOfMonth(new Date()),
-  //   endDate: params?.endDate ? lastDayOfMonth(new Date()) : lastDayOfMonth(new Date()),
-  // });
+  const [date, setDate] = useState({
+    startDate: params?.startDate ? startOfMonth(new Date()) : startOfMonth(new Date()),
+    endDate: params?.endDate ? lastDayOfMonth(new Date()) : lastDayOfMonth(new Date()),
+  });
 
   const router = useRouter();
 
-  // const ref = useRef<BottomSheet>(null);
+  const ref = useRef<BottomSheet>(null);
 
-  // const openSheet = () => ref?.current?.snapToIndex(0);
-  // const closeSheet = () => ref?.current?.close();
+  const openSheet = () => ref?.current?.snapToIndex(0);
+  const closeSheet = () => ref?.current?.close();
 
-  // const onSelect = (status: string) => {
-  //   router.setParams({
-  //     status,
-  //   });
-  //   closeSheet();
-  // };
+  const onSelect = (status: string) => {
+    router.setParams({
+      status,
+    });
+    closeSheet();
+  };
 
   return (
     <View className="flex-row items-center justify-end gap-6 pb-4">
-      {/* <Pressable onPress={openSheet} className="flex-row items-center gap-2 ">
+      <Pressable onPress={openSheet} className="flex-row items-center gap-2 ">
         <P className="font-semibold capitalize">
           {params?.status ? getText(params.status.toLowerCase() as ILanguageTexts) : getText('all')}
         </P>
         <ChevronDown size={20} color="#4b5563" />
-      </Pressable> */}
-      {/* <AppBottomSheet ref={ref} index={-1} snapPoints={['60%']}>
-        <BottomSheetView className="bg-background flex-1 px-4 pt-4">
+      </Pressable>
+      <AppBottomSheet ref={ref} index={-1} snapPoints={['60%']}>
+        <BottomSheetView className="flex-1 bg-background px-4 pt-4">
           {orderSortOptions.map((order) => (
             <TouchableOpacity key={order.value} onPress={() => onSelect(order.value)}>
               <View className="flex-row items-center justify-between px-2 py-3">
@@ -85,7 +92,7 @@ export const OrderFilters = () => {
             });
           }
         }}
-      /> */}
+      />
     </View>
   );
 };

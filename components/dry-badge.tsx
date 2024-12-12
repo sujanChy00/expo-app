@@ -24,7 +24,7 @@ export const DryBadge = ({ text, className }: Props) => {
         alt="fire"
         resizeMode="contain"
       />
-      <P className="web:xs:text-sm font-semibold uppercase text-white web:text-xs">{text}</P>
+      <P className="font-semibold uppercase text-white web:text-xs web:xs:text-sm">{text}</P>
     </Badge>
   );
 };

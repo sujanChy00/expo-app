@@ -45,7 +45,7 @@ export const OrderFilteredResultsText = ({
         <View className="left-1 flex-row items-center pb-2">
           <P className="text-sm font-semibold">Found {orders} </P>
           {!!params.status && params.status != 'all' && (
-            <P className="text-destructive text-sm font-semibold uppercase">
+            <P className="text-sm font-semibold uppercase text-destructive">
               {params?.status
                 ? getText(params?.status.toLowerCase() as ILanguageTexts)
                 : params?.status}{' '}

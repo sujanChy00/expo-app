@@ -107,7 +107,7 @@ export const FileUpload = ({ sendFile }: Props) => {
     <>
       <Button
         onPress={openSheet}
-        className="base:h-8 base:w-8 h-10 w-10 rounded-full"
+        className="h-10 w-10 rounded-full base:h-8 base:w-8"
         size="icon"
         variant="secondary">
         <Image

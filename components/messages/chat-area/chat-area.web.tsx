@@ -64,7 +64,7 @@ export const ChatArea = ({
       onEndReachedThreshold={0.1}
       ListFooterComponent={() => {
         return (
-          <View className="xs:pb-0 pb-20">
+          <View className="pb-20 xs:pb-0">
             {isSending && <MessagePendingStates variables={variables} />}
           </View>
         );

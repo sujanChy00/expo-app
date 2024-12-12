@@ -5,6 +5,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { Avatar } from '../ui/avatar';
 import { P } from '../ui/typography';
 
+import { isweb } from '@/constants/data';
 import useI18n from '@/hooks/useI81n';
 import { cn } from '@/lib/utils';
 import { IChat } from '@/types/IChat';
@@ -46,29 +47,28 @@ export const ChatCard = ({ message }: Props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        // isweb
-        //   ? router.push(`/chat/${message.user.id}`)
-        //   : router.push(`/messages/${message.user.id}`);
-        router.push(`/messages/${message.user.id}`);
+        isweb
+          ? router.push(`/chat/${message.user.id}`)
+          : router.push(`/messages/${message.user.id}`);
       }}
       className={cn(
-        'xs:w-auto w-full flex-row items-end justify-between gap-3 p-2 web:hover:bg-gray-200/50 web:dark:hover:bg-zinc-950',
-        'xs:w-auto web:xs:rounded-none w-full flex-row items-end justify-between gap-3 p-2 web:rounded-md web:hover:bg-gray-200/50 web:sm:rounded-md web:dark:hover:bg-zinc-950',
+        'w-full flex-row items-end justify-between gap-3 p-2 web:hover:bg-gray-200/50 web:dark:hover:bg-zinc-950 xs:w-auto',
+        'w-full flex-row items-end justify-between gap-3 p-2 web:rounded-md web:hover:bg-gray-200/50 web:dark:hover:bg-zinc-950 xs:w-auto web:xs:rounded-none web:sm:rounded-md',
         orderId == String(message.user.id) && 'web:bg-gray-200/50 web:dark:bg-zinc-950'
       )}>
       <View className="flex-row items-center gap-3">
         <Avatar
           alt={message.sender}
           className={cn(
-            'border-border items-center justify-center border',
+            'items-center justify-center border border-border',
             generateClassName('h-10 w-10', 'h-12 w-12')
           )}>
           <P>{getAvatarName(message.user.name)}</P>
         </Avatar>
-        <View className={generateClassName('xs:hidden flex sm:flex', 'gap-1')}>
+        <View className={generateClassName('flex xs:hidden sm:flex', 'gap-1')}>
           <P
             className={cn(
-              'base:font-normal font-medium capitalize',
+              'font-medium capitalize base:font-normal',
               generateClassName('text-sm', 'text-base'),
               !message.seenAt && message.sender == 'user' ? 'font-semibold' : 'font-normal '
             )}>

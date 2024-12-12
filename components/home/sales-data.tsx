@@ -39,9 +39,9 @@ export const SalesData = () => {
   useRefreshOnFocus(refetch);
 
   return (
-    <View className="xs:flex-row xs:gap-0 native:flex-1 flex-col-reverse items-center justify-between gap-2 pt-2">
-      <Card className="xs:px-3 xs:flex-[0.7] xs:w-auto w-full flex-1 flex-row items-center justify-between gap-10 px-2 py-3 md:flex-[0.5]">
-        <View className="xs:flex-[0.5] flex-1 items-center gap-2">
+    <View className="native:flex-1 flex-col-reverse items-center justify-between gap-2 pt-2 xs:flex-row xs:gap-0">
+      <Card className="w-full flex-1 flex-row items-center justify-between gap-10 px-2 py-3 xs:w-auto xs:flex-[0.7] xs:px-3 md:flex-[0.5]">
+        <View className="flex-1 items-center gap-2 xs:flex-[0.5]">
           {isPending ? (
             <Skeleton className="h-3 w-full" />
           ) : (
@@ -54,7 +54,7 @@ export const SalesData = () => {
           </P>
         </View>
         <Separator orientation="vertical" className="min-h-12 flex-shrink-0" />
-        <View className="xs:flex-[0.5] flex-1 items-center gap-2">
+        <View className="flex-1 items-center gap-2 xs:flex-[0.5]">
           {isPending ? (
             <Skeleton className="h-3 w-full" />
           ) : (
@@ -67,7 +67,7 @@ export const SalesData = () => {
           </P>
         </View>
       </Card>
-      <View className="xs:py-0 ml-auto py-2">
+      <View className="ml-auto py-2 xs:py-0">
         <DateRangePicker
           variant="ghost"
           startDate={date.startDate}

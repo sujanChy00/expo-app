@@ -21,14 +21,14 @@ export const ChatCardSkeleton = () => {
   const numberOfSekeltons = isweb ? 6 : 20;
 
   return (
-    <ScrollView className="bg-background h-[75vh]">
+    <ScrollView className="h-[75vh] bg-background">
       <View className="flex-1 pt-2">
         {Array.from({ length: numberOfSekeltons }).map((_, i) => (
           <View key={i} className="flex-row items-center justify-start gap-3 p-2">
-            <Skeleton className="base:h-10 base:w-10 h-16 w-16 rounded-full" />
-            <View className={cn('flex-1 gap-y-1', generateClassName('xs:hidden flex sm:flex'))}>
-              <Skeleton className="base:h-2 base:w-[25%] h-2 w-[35%] md:w-24" />
-              <Skeleton className="base:h-2 base:w-[35%] h-2 w-[55%] md:w-16" />
+            <Skeleton className="h-16 w-16 rounded-full base:h-10 base:w-10" />
+            <View className={cn('flex-1 gap-y-1', generateClassName('flex xs:hidden sm:flex'))}>
+              <Skeleton className="h-2 w-[35%] base:h-2 base:w-[25%] md:w-24" />
+              <Skeleton className="h-2 w-[55%] base:h-2 base:w-[35%] md:w-16" />
             </View>
           </View>
         ))}

@@ -46,19 +46,19 @@ export function DashboardNav({ setOpen }: DashboardNavProps) {
                 }
               }}
               className={cn(
-                'hover:bg-secondary group flex cursor-pointer items-center rounded-md px-3 py-3 font-medium',
+                'group flex cursor-pointer items-center rounded-md px-3 py-3 font-medium hover:bg-secondary',
                 isActive ? 'bg-secondary' : 'bg-transparent'
               )}>
               <Icon
                 size={16}
                 className={cn(
-                  'group-hover:text-secondary-foreground mr-2 text-sm',
+                  'mr-2 text-sm group-hover:text-secondary-foreground',
                   isActive ? 'text-secondary-foreground' : 'text-foreground'
                 )}
               />
               <P
                 className={cn(
-                  'hover:text-secondary-foreground text-sm capitalize',
+                  'text-sm capitalize hover:text-secondary-foreground',
                   isActive ? 'text-secondary-foreground' : 'text-foreground'
                 )}>
                 {getText(item.label as ILanguageTexts).toLowerCase()}

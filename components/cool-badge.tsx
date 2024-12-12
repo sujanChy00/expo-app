@@ -13,17 +13,17 @@ type Props = {
 
 export const CoolBadge = ({ className, text }: Props) => {
   const { isDarkColorScheme } = useColorScheme();
-  const darkBG = text == 'frozen' ? '#1d4ed8' : '#14b8a6';
-  const lightBG = text == 'frozen' ? '#dbeafe' : '#ccfbf1';
-  const darkText = text == 'frozen' ? '#bfdbfe' : '#fff';
-  const lightText = text == 'frozen' ? '#2563eb' : '#0d9488';
+  const darkBG = text === 'frozen' ? '#1d4ed8' : '#14b8a6';
+  const lightBG = text === 'frozen' ? '#dbeafe' : '#ccfbf1';
+  const darkText = text === 'frozen' ? '#bfdbfe' : '#fff';
+  const lightText = text === 'frozen' ? '#2563eb' : '#0d9488';
   return (
     <Badge
       className={cn('native:p-2 flex-row items-center gap-x-0.5 px-1 py-0', className)}
       style={{
         backgroundColor: isDarkColorScheme ? darkBG : lightBG,
       }}>
-      {text == 'cool' ? (
+      {text === 'cool' ? (
         <ThermometerSnowflake color={isDarkColorScheme ? darkText : lightText} size={16} />
       ) : (
         <Snowflake color={isDarkColorScheme ? darkText : lightText} size={16} />
@@ -33,7 +33,7 @@ export const CoolBadge = ({ className, text }: Props) => {
         style={{
           color: isDarkColorScheme ? darkText : lightText,
         }}
-        className="web:xs:text-sm font-semibold uppercase web:text-xs">
+        className="font-semibold uppercase web:text-xs web:xs:text-sm">
         {text}
       </P>
     </Badge>

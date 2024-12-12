@@ -32,7 +32,7 @@ type Props = {
  */
 export const ChatDetailsHeader = ({ userId, userName, isPending }: Props) => {
   return (
-    <View className="xs:flex xs:px-3 hidden h-[10vh] flex-row flex-wrap items-center justify-between gap-2 border-b border-b-border bg-background">
+    <View className="hidden flex-row flex-wrap items-center justify-between gap-2 border-b border-b-border bg-background py-4 xs:flex xs:px-3">
       {isPending ? (
         <View className="flex-row items-center gap-2">
           <Skeleton className="h-10 w-10 rounded-full" />

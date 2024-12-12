@@ -1,9 +1,10 @@
-import React from "react";
-import { Control, FieldValues, Path } from "react-hook-form";
-import { TextInput as TI } from "react-native";
-import { FormDescription, FormField, FormItem } from "../ui/form";
-import { Input } from "../ui/input";
-import { Label } from "./label";
+import React from 'react';
+import { Control, FieldValues, Path } from 'react-hook-form';
+import { TextInput as TI } from 'react-native';
+
+import { FormDescription, FormField, FormItem } from '../ui/form';
+import { Input } from '../ui/input';
+import { Label } from './label';
 
 export type InputProps = React.ComponentProps<typeof Input>;
 
@@ -54,8 +55,7 @@ export const TextInput = <T extends FieldValues>({
   ...props
 }: TextInputProps<T>) => {
   const inputref = React.useRef<TI>(null);
-  const isNumericOrDecimal =
-    props.inputMode === "numeric" || props.inputMode === "decimal";
+  const isNumericOrDecimal = props.inputMode === 'numeric' || props.inputMode === 'decimal';
 
   return (
     <FormField
@@ -64,28 +64,23 @@ export const TextInput = <T extends FieldValues>({
       render={({ field, fieldState }) => {
         return (
           <FormItem className={wrapperClassName}>
-            <Label
-              error={fieldState.error?.message}
-              inputRef={inputref}
-              label={label}
-              id={name}
-            />
+            <Label error={fieldState.error?.message} inputRef={inputref} label={label} id={name} />
             <Input
               {...props}
               ref={inputref}
               id={name}
-              value={String(field.value || "")}
-              autoCapitalize={"none"}
+              value={String(field.value || '')}
+              autoCapitalize="none"
               onChangeText={(text) => {
-                if (!isNumericOrDecimal && (text == "" || text == "-")) {
+                if (!isNumericOrDecimal && (text == '' || text == '-')) {
                   field.onChange(text);
                   return;
                 }
-                if (props.inputMode == "decimal") {
+                if (props.inputMode == 'decimal') {
                   field.onChange(text);
                   return;
                 }
-                if (props.inputMode == "numeric") {
+                if (props.inputMode == 'numeric') {
                   if (isNaN(Number(text)) || text.length == 0) {
                     field.onChange(0);
                     return;
@@ -99,9 +94,7 @@ export const TextInput = <T extends FieldValues>({
               }}
             />
             {fieldState.error && (
-              <FormDescription className="text-red-500">
-                {fieldState.error.message}
-              </FormDescription>
+              <FormDescription className="text-red-500">{fieldState.error.message}</FormDescription>
             )}
           </FormItem>
         );

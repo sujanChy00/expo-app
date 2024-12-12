@@ -37,7 +37,7 @@ const AppOrders = ({ status, className, type }: Props) => {
     setNumberOfColumns(isXs ? 2 : 1);
   }, [isXs]);
 
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isPending, refetch, isRefetching } =
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isPending, refetch } =
     useGetAllOrders({
       size: 30,
       sortBy: params?.status || status,
@@ -51,7 +51,7 @@ const AppOrders = ({ status, className, type }: Props) => {
   const orders = data ? data?.pages?.flatMap((item) => item?.content) : [];
 
   return (
-    <View className={cn('bg-background flex-1', className)}>
+    <View className={cn('flex-1 bg-background', className)}>
       <RefreshingIcon refreshing={refresing} />
       {type === 'all' && (
         <OrderFilteredResultsText

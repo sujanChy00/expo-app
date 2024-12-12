@@ -27,7 +27,7 @@ export const Header = () => {
   const { isDarkColorScheme } = useColorScheme();
   const pathname = usePathname();
   return (
-    <div className="supports-backdrop-blur:bg-background/60 border-b-border bg-background/50 sticky top-0 z-20 w-full border-b px-8 py-2 backdrop-blur">
+    <div className="supports-backdrop-blur:bg-background/60 sticky top-0 z-20 w-full border-b border-b-border bg-background/50 px-8 py-2 backdrop-blur">
       <div className="flex h-16 flex-row items-center justify-between">
         <Link href="/" asChild>
           <View className="hidden cursor-pointer flex-row items-center gap-2 lg:flex">

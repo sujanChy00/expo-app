@@ -32,7 +32,7 @@ export const SearchMessage = ({
   const { getText } = useI18n();
   if (Platform.OS == 'web')
     return (
-      <View className="xs:hidden relative flex-row items-center p-2">
+      <View className="relative flex-row items-center p-2 xs:hidden">
         <Input
           onChangeText={setText}
           placeholder={getText('search_messages')}

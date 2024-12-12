@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
-  Image,
   ImageProps,
   Modal,
   Platform,
@@ -15,7 +14,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-// import { AppImage } from './app-image';
+import { AppImage } from './app-image';
 
 import { useAnimatedModal } from '@/hooks/use-animated-modal';
 import { cn } from '@/lib/utils';
@@ -65,11 +64,9 @@ export const ImageModal = (props: Props) => {
           activeOpacity={1}
           style={[{ alignSelf: 'baseline', height: '100%', width: '100%' }]}
           onPress={handleOpen}>
-          <Image
+          <AppImage
             resizeMode={resizeMode}
-            source={{
-              uri: src,
-            }}
+            uri={src}
             style={{
               height: '100%',
               width: '100%',
@@ -115,7 +112,7 @@ export const ImageModal = (props: Props) => {
           <Animated.View
             style={[animateConf, { justifyContent: 'center', alignItems: 'center' }]}
             renderToHardwareTextureAndroid>
-            <Image
+            <AppImage
               resizeMode="contain"
               style={[
                 {
@@ -123,9 +120,7 @@ export const ImageModal = (props: Props) => {
                   height: '70%',
                 },
               ]}
-              source={{
-                uri: imageSource,
-              }}
+              uri={imageSource}
               alt={props.alt || ''}
             />
           </Animated.View>
@@ -171,11 +166,9 @@ export const ImageModal = (props: Props) => {
                         key={src + index}
                         className={src === imageSource ? 'opacity-100' : 'opacity-25'}
                         onPress={() => setImageSource(src)}>
-                        <Image
+                        <AppImage
                           alt={src}
-                          source={{
-                            uri: src,
-                          }}
+                          uri={src}
                           resizeMode="cover"
                           className="rounded-lg"
                           style={{ height: 50, width: 50 }}

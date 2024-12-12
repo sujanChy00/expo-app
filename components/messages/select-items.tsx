@@ -1,36 +1,25 @@
-import { ITransactionByIdItems } from "@/types/ITransaction";
-import { getAvatarName } from "@/utils/get-avatar-name";
+import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { useLocalSearchParams } from 'expo-router';
+import { ShoppingBag } from 'lucide-react-native';
+import React, { useRef, useState } from 'react';
+import { Keyboard, ScrollView, TouchableOpacity, View } from 'react-native';
 
-import { useGetOrderById } from "@/api/order-api";
-import { isweb } from "@/constants/data";
-import { useColorScheme } from "@/hooks/use-color-scheme";
-import { ChatItem } from "@/types/IChat";
-import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { useLocalSearchParams } from "expo-router";
-import { ShoppingBag } from "lucide-react-native";
-import React, { useRef, useState } from "react";
-import { Keyboard, ScrollView, TouchableOpacity, View } from "react-native";
-import { AppBottomSheet } from "../app-bottom-sheet";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { Button } from "../ui/button";
-import { Card } from "../ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { P } from "../ui/typography";
+import { AppBottomSheet } from '../app-bottom-sheet';
+import { Avatar, AvatarImage } from '../ui/avatar';
+import { Button } from '../ui/button';
+import { Card } from '../ui/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
+import { P } from '../ui/typography';
+
+import { useGetOrderById } from '@/api/order-api';
+import { isweb } from '@/constants/data';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { ChatItem } from '@/types/IChat';
+import { ITransactionByIdItems } from '@/types/ITransaction';
+import { getAvatarName } from '@/utils/get-avatar-name';
 
 type Props = {
-  onItemSelect: ({
-    itemId,
-    item,
-  }: {
-    itemId: string;
-    item: Partial<ChatItem>;
-  }) => void;
+  onItemSelect: ({ itemId, item }: { itemId: string; item: Partial<ChatItem> }) => void;
 };
 
 type ItemProps = Props & {
@@ -85,14 +74,12 @@ export const SelectItems = (props: Props) => {
           setOpened(o);
 
           if (o) setEnabled(true);
-        }}
-      >
+        }}>
         <DialogTrigger asChild>
           <Button
-            className="rounded-full web:h-8 web:w-8 native:h-10 native:w-10"
-            size={"icon"}
-            variant={"secondary"}
-          >
+            className="native:h-10 native:w-10 rounded-full web:h-8 web:w-8"
+            size="icon"
+            variant="secondary">
             <ShoppingBag className="text-accent-foreground" size={18} />
           </Button>
         </DialogTrigger>
@@ -103,11 +90,7 @@ export const SelectItems = (props: Props) => {
           <ScrollView className="h-[60vh]">
             <View className="gap-2 p-1">
               {data && (
-                <Items
-                  {...props}
-                  orderedItems={data?.items}
-                  close={() => setOpened(false)}
-                />
+                <Items {...props} orderedItems={data?.items} close={() => setOpened(false)} />
               )}
             </View>
           </ScrollView>
@@ -118,35 +101,25 @@ export const SelectItems = (props: Props) => {
   return (
     <>
       <Button
-        className="rounded-full base:h-8 base:w-8 h-10 w-10"
-        size={"icon"}
-        variant={"secondary"}
-        onPress={open}
-      >
+        className="h-10 w-10 rounded-full base:h-8 base:w-8"
+        size="icon"
+        variant="secondary"
+        onPress={open}>
         <ShoppingBag
-          color={isDarkColorScheme ? "#bab6d2" : "#33313f"}
+          color={isDarkColorScheme ? '#bab6d2' : '#33313f'}
           className="text-accent-foreground"
           size={18}
         />
       </Button>
-      <AppBottomSheet
-        snapPoints={["40%", "60%", "80%"]}
-        index={-1}
-        ref={bottomSheetRef}
-      >
-        <BottomSheetScrollView
-          className="p-3"
-          contentContainerClassName={"gap-2 pb-8"}
-        >
+      <AppBottomSheet snapPoints={['40%', '60%', '80%']} index={-1} ref={bottomSheetRef}>
+        <BottomSheetScrollView className="p-3" contentContainerClassName="gap-2 pb-8">
           {isPending && (
             <View className="h-20 items-center justify-center">
               <P>Loading Items...</P>
             </View>
           )}
 
-          {!isPending && data && (
-            <Items {...props} orderedItems={data.items} close={close} />
-          )}
+          {!isPending && data && <Items {...props} orderedItems={data.items} close={close} />}
         </BottomSheetScrollView>
       </AppBottomSheet>
     </>
@@ -176,14 +149,12 @@ const Items = ({ onItemSelect, close, orderedItems }: ItemProps) => {
           close();
         }}
         key={item.id + index}
-        className="p-2 rounded flex-row justify-start items-center gap-2"
-      >
+        className="flex-row items-center justify-start gap-2 rounded p-2">
         <Avatar
           style={{ height: 45, width: 45 }}
           alt={item.name}
-          className="bg-muted items-center justify-center"
-        >
-          {!!item.thumbnailImage ? (
+          className="items-center justify-center bg-muted">
+          {item.thumbnailImage ? (
             <AvatarImage source={{ uri: item.thumbnailImage }} />
           ) : (
             <P className="text-foreground">{getAvatarName(item.name)}</P>
@@ -194,10 +165,7 @@ const Items = ({ onItemSelect, close, orderedItems }: ItemProps) => {
           <P style={{ fontSize: 13 }} className="text-sm font-semibold">
             ¥{item.totalPriceBeforeTax}
           </P>
-          <P
-            style={{ fontSize: 10 }}
-            className="text-sm font-semibold text-destructive"
-          >
+          <P style={{ fontSize: 10 }} className="text-sm font-semibold text-destructive">
             ¥{item.price}
             (With Tax)
           </P>

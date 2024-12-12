@@ -39,7 +39,7 @@ export const UpdateAddressAlert = ({ orderId, isSellerRequest }: Props) => {
         icon={Info}
         variant="destructive"
         iconSize={28}
-        className="xs:flex-row xs:justify-between xs:items-end xs:gap-2 gap-4">
+        className="gap-4 xs:flex-row xs:items-end xs:justify-between xs:gap-2">
         <View className="pl-2">
           <AlertTitle>{getText('address_update_request')}</AlertTitle>
           <AlertDescription>{messasge}</AlertDescription>

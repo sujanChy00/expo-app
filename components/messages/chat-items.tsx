@@ -1,8 +1,8 @@
 import { useRouter } from 'expo-router';
-import { Image, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
-// import { AppImage } from '../app-image';
+import { AppImage } from '../app-image';
 import { Badge } from '../ui/badge';
 import { Card } from '../ui/card';
 import { P } from '../ui/typography';
@@ -51,11 +51,9 @@ export const ChatItems = ({
       <DeleteMessage messageId={messageId} showDelete={shouldShowDelete} />
       <Pressable onPress={() => router.push(`/items/${orderedItems.itemId}`)}>
         <Card className="relative items-center gap-y-1 p-1 shadow-none">
-          <Image
+          <AppImage
             style={{ height: 50, width: 50, borderRadius: 10 }}
-            source={{
-              uri: orderedItems.itemPhotoUrl,
-            }}
+            uri={orderedItems.itemPhotoUrl}
             alt={orderedItems?.itemName || 'item name'}
           />
           <Badge variant="destructive" className="absolute -top-1 right-0 z-10 rounded-md p-0.5">

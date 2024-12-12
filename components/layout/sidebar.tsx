@@ -28,17 +28,17 @@ export default function Sidebar({ className, setOpen }: SidebarProps) {
   return (
     <div
       className={cn(
-        'border-r-border flex w-[13%] flex-col border-r px-2 py-4 lg:pt-14',
+        'flex w-[13%] flex-col border-r border-r-border px-2 py-4 lg:pt-14',
         className
       )}>
       <div className="flex flex-col">
         <DashboardNav setOpen={setOpen} />
-        <Logout className="hover:bg-secondary group mt-1 justify-start rounded-md bg-transparent px-3 py-3 text-sm font-medium">
+        <Logout className="group mt-1 justify-start rounded-md bg-transparent px-3 py-3 text-sm font-medium hover:bg-secondary">
           <LogoutIcon
             size={16}
-            className="text-foreground group-hover:text-secondary-foreground mr-2"
+            className="mr-2 text-foreground group-hover:text-secondary-foreground"
           />
-          <P className="text-foreground group-hover:text-secondary-foreground text-sm">
+          <P className="text-sm text-foreground group-hover:text-secondary-foreground">
             {getText('logout')}
           </P>
         </Logout>

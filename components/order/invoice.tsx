@@ -1,12 +1,14 @@
-import { useGenerateInvoice } from "@/api/order-api";
-import useI18n from "@/hooks/useI81n";
-import React from "react";
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
-import { ChevronRight } from "../icons/chevron-right";
-import { Paperclip } from "../icons/paper-clip";
-import { Button } from "../ui/button";
-import { Text } from "../ui/text";
-import { P } from "../ui/typography";
+import React from 'react';
+import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
+
+import { ChevronRight } from '../icons/chevron-right';
+import { Paperclip } from '../icons/paper-clip';
+import { Button } from '../ui/button';
+import { Text } from '../ui/text';
+import { P } from '../ui/typography';
+
+import { useGenerateInvoice } from '@/api/order-api';
+import useI18n from '@/hooks/useI81n';
 
 interface Props {
   orderId: number;
@@ -31,24 +33,23 @@ export const Invoice = ({ orderId, close }: Props) => {
     <>
       <Button
         onPress={getInvoice}
-        className="flex-row gap-1 h-9 native:hidden web:md:flex hidden"
-        variant={"secondary"}
-      >
+        className="native:hidden hidden h-9 flex-row gap-1 web:md:flex"
+        variant="secondary">
         {isLoading ? (
           <ActivityIndicator />
         ) : (
           <Paperclip size={16} className="text-accent-foreground" />
         )}
-        <Text>{getText("view_invoice")}</Text>
+        <Text>{getText('view_invoice')}</Text>
       </Button>
       <TouchableOpacity className="py-4 web:md:hidden" onPress={getInvoice}>
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center justify-between gap-2">
-            <Paperclip size={18} color={"#313091"} />
-            <P className="font-semibold">{getText("view_invoice")}</P>
+            <Paperclip size={18} color="#313091" />
+            <P className="font-semibold">{getText('view_invoice')}</P>
           </View>
           {isLoading ? (
-            <ActivityIndicator size={"small"} />
+            <ActivityIndicator size="small" />
           ) : (
             <ChevronRight className="text-foreground" />
           )}

@@ -1,11 +1,15 @@
-// import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import React, { useState } from 'react';
+import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import React, { useRef, useState } from 'react';
 import { Control, FieldValues, Path } from 'react-hook-form';
-import { View } from 'react-native';
+import { Platform, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// import { AppBottomSheet } from '../app-bottom-sheet';
+import { AppBottomSheet } from '../app-bottom-sheet';
+import { Check } from '../icons/check';
+import { Button } from '../ui/button';
+import { FormDescription, FormField, FormItem } from '../ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { P } from '../ui/typography';
 import { Label } from './label';
 
 import { cn } from '@/lib/utils';
@@ -87,55 +91,35 @@ type PlatformSelectProps<T extends FieldValues> = SelectInputProps<T> & {
  */
 
 export const SelectInput = <T extends FieldValues>(props: SelectInputProps<T>) => {
-  const [value, setValue] = useState<string>();
-
   return (
-    <View />
-    // <FormField
-    //   control={props.control}
-    //   name={props.name}
-    //   render={({ field, fieldState }) => {
-    //     useEffect(() => {
-    //       if (field.value) {
-    //         const option = props.options.find((option) => option.value === field.value);
-    //         setValue(field.value);
-
-    //         if (option) {
-    //           field.onChange(option.value);
-    //           props?.onChange?.(option.value);
-
-    //           if (option) {
-    //             field.onChange(option.value);
-    //           }
-    //         }
-    //       }
-    //     }, []);
-    //     return (
-    //       <FormItem className={props?.wrapperClassName}>
-    //         {Platform.OS === 'web' ? (
-    //           <WebSelectInput
-    //             {...props}
-    //             fieldValue={field.value}
-    //             fieldValueChange={field.onChange}
-    //             error={fieldState.error?.message}
-    //           />
-    //         ) : (
-    //           <NativeSelectInput
-    //             {...props}
-    //             fieldValue={field.value}
-    //             fieldValueChange={field.onChange}
-    //             value={value}
-    //             error={fieldState.error?.message}
-    //             setValue={setValue}
-    //           />
-    //         )}
-    //         {fieldState.error && (
-    //           <FormDescription className="text-red-500">{fieldState.error.message}</FormDescription>
-    //         )}
-    //       </FormItem>
-    //     );
-    //   }}
-    // />
+    <FormField
+      control={props.control}
+      name={props.name}
+      render={({ field, fieldState }) => {
+        return (
+          <FormItem className={props?.wrapperClassName}>
+            {Platform.OS === 'web' ? (
+              <WebSelectInput
+                {...props}
+                fieldValue={field.value}
+                fieldValueChange={field.onChange}
+                error={fieldState.error?.message}
+              />
+            ) : (
+              <NativeSelectInput
+                {...props}
+                fieldValue={field.value}
+                fieldValueChange={field.onChange}
+                error={fieldState.error?.message}
+              />
+            )}
+            {fieldState.error && (
+              <FormDescription className="text-red-500">{fieldState.error.message}</FormDescription>
+            )}
+          </FormItem>
+        );
+      }}
+    />
   );
 };
 
@@ -204,58 +188,55 @@ const WebSelectInput = <T extends FieldValues>({
   );
 };
 
-// const NativeSelectInput = <T extends FieldValues>({
-//   name,
-//   fieldValueChange,
-//   options,
-//   placeholder,
-//   className,
-//   setValue,
-//   disabled,
-//   snapPoints,
-//   onChange,
-//   label,
-//   value,
-// }: PlatformSelectProps<T> & {
-//   value?: string;
-//   setValue: (value: string) => void;
-// }) => {
-//   const bottomSheetRef = useRef<BottomSheet>(null);
-//   const open = () => bottomSheetRef?.current?.snapToIndex(0);
-//   const close = () => bottomSheetRef?.current?.close();
-//   const selectedValue = options.find((o) => o.value == value)?.label;
-//   return (
-//     <View>
-//       <Label id={name} inputRef={null} label={label} onPress={() => !disabled && open()} />
-//       <Button
-//         variant="outline"
-//         disabled={disabled}
-//         onPress={() => !disabled && open()}
-//         className={className}>
-//         <P>{selectedValue || placeholder}</P>
-//       </Button>
-//       <AppBottomSheet ref={bottomSheetRef} snapPoints={snapPoints || ['30%', '50%']} index={-1}>
-//         <BottomSheetScrollView style={{ flex: 1 }}>
-//           <View className="p-3">
-//             {options.map((opt) => (
-//               <TouchableOpacity
-//                 disabled={opt.disabled}
-//                 onPress={() => {
-//                   setValue(opt.value as string);
-//                   fieldValueChange(opt.value as string);
-//                   onChange?.(opt.value as string);
-//                   close();
-//                 }}
-//                 key={opt.value as string}>
-//                 <View className="flex-row items-center justify-between py-3">
-//                   <P>{opt.label}</P>
-//                   {value == opt.value && <Check color="green" />}
-//                 </View>
-//               </TouchableOpacity>
-//             ))}
-//           </View>
-//         </BottomSheetScrollView>
-//       </AppBottomSheet>
-//     </View>
-//   );
-// };
+const NativeSelectInput = <T extends FieldValues>({
+  name,
+  fieldValueChange,
+  options,
+  placeholder,
+  className,
+  disabled,
+  snapPoints,
+  onChange,
+  label,
+  fieldValue,
+}: PlatformSelectProps<T>) => {
+  const [value, setValue] = useState(fieldValue);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const open = () => bottomSheetRef?.current?.snapToIndex(0);
+  const close = () => bottomSheetRef?.current?.close();
+  const selectedValue = options.find((o) => o.value === value)?.label;
+  return (
+    <View>
+      <Label id={name} inputRef={null} label={label} onPress={() => !disabled && open()} />
+      <Button
+        variant="outline"
+        disabled={disabled}
+        onPress={() => !disabled && open()}
+        className={className}>
+        <P>{selectedValue || placeholder}</P>
+      </Button>
+      <AppBottomSheet ref={bottomSheetRef} snapPoints={snapPoints || ['30%', '50%']} index={-1}>
+        <BottomSheetScrollView style={{ flex: 1 }}>
+          <View className="p-3">
+            {options.map((opt) => (
+              <TouchableOpacity
+                disabled={opt.disabled}
+                onPress={() => {
+                  setValue(opt.value as string);
+                  fieldValueChange(opt.value as string);
+                  onChange?.(opt.value as string);
+                  close();
+                }}
+                key={opt.value as string}>
+                <View className="flex-row items-center justify-between py-3">
+                  <P>{opt.label}</P>
+                  {value == opt.value && <Check color="green" />}
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </BottomSheetScrollView>
+      </AppBottomSheet>
+    </View>
+  );
+};

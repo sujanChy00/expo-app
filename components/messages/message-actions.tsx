@@ -67,7 +67,7 @@ export const MessageActions = ({ className, sendMessage, isPending }: Props) => 
       className={cn(
         'relative z-20 flex-row items-center justify-between gap-x-2 bg-background',
         generateClassName(
-          'xs:static fixed bottom-0 left-0 w-full border-t border-t-border px-2',
+          'fixed bottom-0 left-0 w-full border-t border-t-border px-2 py-3 xs:static',
           'pt-2'
         ),
         className
@@ -93,7 +93,7 @@ export const MessageActions = ({ className, sendMessage, isPending }: Props) => 
       </Animated.View>
       <View className="flex-1 flex-row items-center gap-2">
         <Input
-          className="xs:pr-0 flex-1 rounded-full pr-10"
+          className="flex-1 rounded-full pr-10 xs:pr-0"
           value={message}
           inputMode="text"
           multiline

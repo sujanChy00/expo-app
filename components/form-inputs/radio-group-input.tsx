@@ -62,7 +62,7 @@ export const RadioGroupInput = <T extends FieldValues>({
                   <View className="flex-row items-center gap-2">
                     <View
                       style={{ height: 20, width: 20 }}
-                      className="border-primary items-center justify-center rounded-full border">
+                      className="items-center justify-center rounded-full border border-primary">
                       {op.value == value && (
                         <Animated.View
                           entering={FadeIn}

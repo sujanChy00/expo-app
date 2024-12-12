@@ -15,7 +15,7 @@ export const FalllBackMesage = ({ message, className, children }: Props) => {
   return (
     <View
       className={cn(
-        'bg-background text-foreground native:pt-20 items-center justify-center web:h-screen',
+        'native:pt-20 items-center justify-center bg-background text-foreground web:h-screen',
         className
       )}>
       <View className="items-center gap-y-2">
