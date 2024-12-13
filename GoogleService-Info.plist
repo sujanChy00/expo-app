@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>172226501379-fvtefst4deno44k921oh988b3psekk0k.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.172226501379-fvtefst4deno44k921oh988b3psekk0k</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>172226501379-1j0mrae9tne3n02hbogo7a94bhmdlmr7.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBJQSyZee-AqdySEryCULFC9vcx84haSmQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>172226501379</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ashabazaar.seller</string>
+	<key>PROJECT_ID</key>
+	<string>asha-bazaar</string>
+	<key>STORAGE_BUCKET</key>
+	<string>asha-bazaar.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:172226501379:ios:8ad41fd5e76bac9b126736</string>
+</dict>
+</plist>

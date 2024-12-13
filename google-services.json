@@ -1,0 +1,132 @@
+{
+  "project_info": {
+    "project_number": "172226501379",
+    "project_id": "asha-bazaar",
+    "storage_bucket": "asha-bazaar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172226501379:android:6238b9f9e40334ec126736",
+        "android_client_info": {
+          "package_name": "com.ashabazaar.marketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172226501379-1j0mrae9tne3n02hbogo7a94bhmdlmr7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "a2468057eba42f874945e87a792429c889cc3cfe"
+          }
+        },
+        {
+          "client_id": "172226501379-3kck04lrnnete4e89utcsdn51uu0j2t0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "bda6f9046b14a02f53c03396d1999d266eeda0c0"
+          }
+        },
+        {
+          "client_id": "172226501379-7qlrt0l5ko1eqb4cp8d2evkv2pg0kqls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "a9f64cf3a7a757dde348b6a10e5eb300c485d22e"
+          }
+        },
+        {
+          "client_id": "172226501379-8bk55r2tnk4fipudgtt4v64vm45sougi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "d4a973179d1d58e4b4e46d5e0300530d14818139"
+          }
+        },
+        {
+          "client_id": "172226501379-nfk42hcsruck12fq0t0q24a05h8qkg9p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "4326216ac189ed4e77634be6fe7543c1ba6d0528"
+          }
+        },
+        {
+          "client_id": "172226501379-r6e32elasi2jivd25tmc9d91nitodbra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashabazaar.marketplace",
+            "certificate_hash": "2540ed570fbd32dd203514c60933022143bfb9a8"
+          }
+        },
+        {
+          "client_id": "172226501379-slh8ik2oh2dh71qg5bppd8d3ejisok3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANxp8ti68k8300HFFvIoMXVF0SoOtDGIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172226501379-slh8ik2oh2dh71qg5bppd8d3ejisok3g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "172226501379-fvtefst4deno44k921oh988b3psekk0k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ashabazaar.seller",
+                "app_store_id": "376771144"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172226501379:android:c98f4287f3d28b9e126736",
+        "android_client_info": {
+          "package_name": "com.ashabazaar.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172226501379-slh8ik2oh2dh71qg5bppd8d3ejisok3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANxp8ti68k8300HFFvIoMXVF0SoOtDGIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172226501379-slh8ik2oh2dh71qg5bppd8d3ejisok3g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "172226501379-fvtefst4deno44k921oh988b3psekk0k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ashabazaar.seller",
+                "app_store_id": "376771144"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
