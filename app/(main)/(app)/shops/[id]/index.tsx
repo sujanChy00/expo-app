@@ -11,6 +11,7 @@ import { ShopSupportedAreas } from '@/components/shop/shop-supported-areas';
 import { Button } from '@/components/ui/button';
 import { P } from '@/components/ui/typography';
 import { isNative } from '@/constants/data';
+import AppBack from '@/components/app-back';
 
 const ShopDetailScreen = () => {
   const params = useLocalSearchParams<{ id: string }>();
@@ -45,7 +46,10 @@ const ShopDetailScreen = () => {
       <Stack.Screen
         options={{
           headerTitle: data.shopName,
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <RefreshingIcon refreshing={refreshing} />

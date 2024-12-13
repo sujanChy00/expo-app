@@ -1,3 +1,4 @@
+import AppBack from '@/components/app-back';
 import { ProfileForm } from '@/forms/profile/profile-form';
 import useI18n from '@/hooks/useI81n';
 import { Stack } from 'expo-router';
@@ -11,7 +12,10 @@ const UpdateProfile = () => {
       <Stack.Screen
         options={{
           title: getText('update_profile'),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
           presentation: 'modal',
         }}
       />

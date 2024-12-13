@@ -8,6 +8,7 @@ import { ShopCard } from '@/components/shop/shop-card';
 import { screenHeaderShown } from '@/constants/data';
 import { useUser } from '@/hooks/use-user';
 import { useWindow } from '@/hooks/use-window';
+import AppBack from '@/components/app-back';
 
 const ShopScreen = () => {
   const [numberOfColumns, setNumberOfColumns] = useState(1);
@@ -24,7 +25,10 @@ const ShopScreen = () => {
         options={{
           headerShown: screenHeaderShown,
           title: 'My Shops',
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <FlashList

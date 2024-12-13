@@ -97,6 +97,7 @@
     "react-native-screens": "~4.1.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.10",
+    "react-native-webview": "13.12.5",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "tiptap-markdown": "^0.8.10",

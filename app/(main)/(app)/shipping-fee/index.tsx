@@ -7,6 +7,7 @@ import { ResetShop } from '@/components/shop/reset-shop';
 import { P } from '@/components/ui/typography';
 import { screenHeaderShown } from '@/constants/data';
 import useI18n from '@/hooks/useI81n';
+import AppBack from '@/components/app-back';
 
 const ShippingFee = () => {
   const { getText } = useI18n();
@@ -16,7 +17,10 @@ const ShippingFee = () => {
         options={{
           headerShown: screenHeaderShown,
           title: getText('shipping_fees'),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
           headerRight: () => (
             <ResetShop size="sm" variant="link">
               <P className="text-destructive">{getText('reset')}</P>

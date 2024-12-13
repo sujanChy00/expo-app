@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { AppShopUsers } from '@/components/shop-users/app-shop-users';
 import { screenHeaderShown } from '@/constants/data';
 import useI18n from '@/hooks/useI81n';
+import AppBack from '@/components/app-back';
 
 const ShopUsers = () => {
   const { getText } = useI18n();
@@ -14,7 +15,10 @@ const ShopUsers = () => {
         options={{
           headerShown: screenHeaderShown,
           title: getText('shop_users'),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <AppShopUsers />

@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { AppCampaigns } from '@/components/shipping-campaign/app-campaigns';
 import { screenHeaderShown } from '@/constants/data';
 import useI18n from '@/hooks/useI81n';
+import AppBack from '@/components/app-back';
 
 const ShippingCampaign = () => {
   const { getText } = useI18n();
@@ -14,7 +15,10 @@ const ShippingCampaign = () => {
         options={{
           headerShown: screenHeaderShown,
           title: getText('shipping_campaigns'),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <AppCampaigns />

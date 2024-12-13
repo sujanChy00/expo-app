@@ -4,6 +4,7 @@ import { View } from 'react-native';
 
 import { PasswordForm } from '@/forms/password-form';
 import useI18n from '@/hooks/useI81n';
+import AppBack from '@/components/app-back';
 
 const UpdatePassword = () => {
   const { getText } = useI18n();
@@ -12,7 +13,10 @@ const UpdatePassword = () => {
       <Stack.Screen
         options={{
           title: getText('change_password'),
-          headerBackTitle: 'back',
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
         }}
       />
       <PasswordForm />

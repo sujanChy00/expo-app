@@ -2,7 +2,6 @@ import { useGetItemDetail } from '@/api/item-api';
 import { ItemFormProvider } from '@/forms/item/item-form-provider';
 import { ItemFormTab } from '@/forms/item/item-form-tab';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 
 const EditItem = () => {
