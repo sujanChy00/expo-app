@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { useItemForm } from './use-item-form';
 
@@ -12,6 +12,16 @@ import { useItemForm } from './use-item-form';
 //   AnimatedTabTrigger,
 // } from '@/components/ui/animated-tab';
 import { IItemDescriptionResponse } from '@/types';
+import {
+  AnimatedTab,
+  AnimatedTabContent,
+  AnimatedTabContentWrapper,
+  AnimatedTabList,
+  AnimatedTabTrigger,
+} from '@/components/ui/animated-tab';
+import { P } from '@/components/ui/typography';
+import { ItemImagePicker } from '@/components/item/item-image-picker';
+import { ItemForm } from './item-form';
 
 /**
  * @description A React component that renders a form for creating or editing an item, 
@@ -29,8 +39,8 @@ export const ItemFormTab = ({ editMode = false }: { editMode?: boolean }) => {
   const { form, handleSubmit, isLoading, categoryId, data, copy, itemType } = useItemForm();
 
   return (
-    <View className="bg-background flex-1">
-      {/* <AnimatedTab numberOfTabs={4}>
+    <View className="flex-1 bg-background">
+      <AnimatedTab numberOfTabs={4}>
         <AnimatedTabList className="gap-4 md:gap-10">
           <AnimatedTabTrigger
             tabValue="en_US"
@@ -80,7 +90,7 @@ export const ItemFormTab = ({ editMode = false }: { editMode?: boolean }) => {
                 name="englishLanguageList"
               />
             </AnimatedTabContent>
-            <AnimatedTabContent tabValue="ne_NP" className="xs:p-6 gap-4 p-3">
+            <AnimatedTabContent tabValue="ne_NP" className="gap-4 p-3 xs:p-6">
               <ItemForm
                 itemType={itemType}
                 editMode={editMode}
@@ -93,7 +103,7 @@ export const ItemFormTab = ({ editMode = false }: { editMode?: boolean }) => {
                 name="nepaliLanguageList"
               />
             </AnimatedTabContent>
-            <AnimatedTabContent tabValue="ja_JP" className="xs:p-6 gap-4 p-3">
+            <AnimatedTabContent tabValue="ja_JP" className="gap-4 p-3 xs:p-6">
               <ItemForm
                 itemType={itemType}
                 editMode={editMode}
@@ -106,7 +116,7 @@ export const ItemFormTab = ({ editMode = false }: { editMode?: boolean }) => {
                 name="japaneseLanguageList"
               />
             </AnimatedTabContent>
-            <AnimatedTabContent tabValue="vi_VN" className="xs:p-6 gap-4 p-3">
+            <AnimatedTabContent tabValue="vi_VN" className="gap-4 p-3 xs:p-6">
               <ItemForm
                 itemType={itemType}
                 editMode={editMode}
@@ -121,7 +131,7 @@ export const ItemFormTab = ({ editMode = false }: { editMode?: boolean }) => {
             </AnimatedTabContent>
           </AnimatedTabContentWrapper>
         </ScrollView>
-      </AnimatedTab> */}
+      </AnimatedTab>
     </View>
   );
 };

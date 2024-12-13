@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { ActivityIndicator } from 'react-native';
 
 import { Trash } from '../icons/trash-icon';
 import {
   AlertDialog,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -13,9 +11,6 @@ import {
   AlertDialogTrigger,
 } from '../ui/alert-dialog';
 import { Button } from '../ui/button';
-import { P } from '../ui/typography';
-
-import { useDeleteItem } from '@/actions/item';
 
 interface Props {
   children?: React.ReactNode;
@@ -40,7 +35,7 @@ interface Props {
  */
 export const DeleteItem = ({ itemId, children, close }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { mutateAsync, isPending } = useDeleteItem();
+  // const { mutateAsync, isPending } = useDeleteItem();
   return (
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogTrigger asChild>
@@ -60,10 +55,11 @@ export const DeleteItem = ({ itemId, children, close }: Props) => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="flex-row flex-nowrap justify-end">
-          <AlertDialogCancel disabled={isPending}>
+          {/* TODO: Fix Here */}
+          {/* <AlertDialogCancel disabled={isPending}>
             <P>CANCEL</P>
-          </AlertDialogCancel>
-          <Button
+          </AlertDialogCancel> */}
+          {/* <Button
             disabled={isPending}
             variant="destructive"
             className="flex-row items-center gap-1"
@@ -75,7 +71,7 @@ export const DeleteItem = ({ itemId, children, close }: Props) => {
             }>
             {isPending && <ActivityIndicator size="small" color="#fff" />}
             <P className="text-white">DELETE</P>
-          </Button>
+          </Button> */}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

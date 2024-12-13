@@ -125,7 +125,7 @@ export const ItemForm = ({
           <View
             className={cn(
               'items-center gap-2',
-              generateClassName('xs:col-span-8 col-span-12 grid grid-cols-2', 'flex-row')
+              generateClassName('col-span-12 grid grid-cols-2 xs:col-span-8', 'flex-row')
             )}>
             <TextInput
               label={getText('item_weight')}
@@ -144,12 +144,14 @@ export const ItemForm = ({
               wrapperClassName="flex-1"
             />
           </View>
+          {/* TODO: Fix Here */}
           <TextInput
             label={getText('sku')}
             control={form.control}
             name="sku"
             placeholder={getText('enter_sku')}
-            wrapperClassName="flex-1 xs:col-span-4 col-span-12 xs:w-auto w-full"
+            wrapperClassName="native:flex-1 native:w-full"
+            // wrapperClassName="native:flex-1 web:xs:col-span-4 web:col-span-12 web:xs:w-auto native:w-full"
           />
         </View>
         <View className="flex-1 flex-row items-center gap-2">

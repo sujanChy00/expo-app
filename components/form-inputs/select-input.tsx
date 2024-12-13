@@ -206,7 +206,7 @@ const NativeSelectInput = <T extends FieldValues>({
   const close = () => bottomSheetRef?.current?.close();
   const selectedValue = options.find((o) => o.value === value)?.label;
   return (
-    <View>
+    <View className={className}>
       <Label id={name} inputRef={null} label={label} onPress={() => !disabled && open()} />
       <Button
         variant="outline"

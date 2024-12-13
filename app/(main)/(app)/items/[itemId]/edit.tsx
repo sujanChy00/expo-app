@@ -1,9 +1,9 @@
-import { useGetItemDetail } from "@/api/item-api";
-import { ItemFormProvider } from "@/forms/item/item-form-provider";
-import { ItemFormTab } from "@/forms/item/item-form-tab";
-import { Stack, useLocalSearchParams } from "expo-router";
-import React from "react";
-import { ActivityIndicator, View } from "react-native";
+import { useGetItemDetail } from '@/api/item-api';
+import { ItemFormProvider } from '@/forms/item/item-form-provider';
+import { ItemFormTab } from '@/forms/item/item-form-tab';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
 const EditItem = () => {
   const params = useLocalSearchParams<{ itemId: string }>();
@@ -12,20 +12,18 @@ const EditItem = () => {
   if (isPending)
     return (
       <View className="flex-1 items-center justify-center bg-background text-foreground">
-        <ActivityIndicator size={"large"} />
-        <Stack.Screen
-          options={{ title: "Edit Item", headerBackTitle: "back" }}
-        />
+        <ActivityIndicator size={'large'} />
+        <Stack.Screen options={{ title: 'Edit Item', headerBackTitle: 'back' }} />
       </View>
     );
 
   return (
     <ItemFormProvider data={data}>
-      <View className="flex-1 bg-background md:p-6 p-3">
+      <View className="flex-1 bg-background p-3 md:p-6">
         <Stack.Screen
           options={{
             title: data?.itemDescription[0].itemName,
-            headerBackTitle: "back",
+            headerBackTitle: 'back',
           }}
         />
         <ItemFormTab editMode />
