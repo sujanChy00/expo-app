@@ -116,7 +116,7 @@ export function DataTable<TData, TValue>({
       <ScrollView
         horizontal
         bounces={false}
-        className={cn('max-h-[75vh] w-full bg-background', className)}
+        className={cn('w-full bg-background web:max-h-[75vh]', className)}
         contentContainerClassName="w-full rounded-md bg-background"
         showsHorizontalScrollIndicator={false}>
         <Table className="rounded-md bg-background">

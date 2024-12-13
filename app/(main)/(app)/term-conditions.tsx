@@ -1,3 +1,4 @@
+import AppBack from '@/components/app-back';
 import useI18n from '@/hooks/useI81n';
 import { Stack } from 'expo-router';
 import { WebView } from 'react-native-webview';
@@ -7,7 +8,15 @@ const TermsAndConditions = () => {
 
   return (
     <>
-      <Stack.Screen options={{ title: getText('terms_condition'), headerBackTitle: 'back' }} />
+      <Stack.Screen
+        options={{
+          title: getText('terms_condition'),
+          headerBackVisible: false,
+          headerLeft: () => {
+            return <AppBack />;
+          },
+        }}
+      />
       <WebView
         style={{ flex: 1, backgroundColor: '#fff' }}
         source={{

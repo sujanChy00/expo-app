@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator, Platform, RefreshControl, ScrollView, View } from 'react-native';
 
 import { useGetOrderTrackingDetails } from '@/api/order-api';
@@ -40,6 +40,7 @@ const TrackOrderScreen = () => {
         />
       </>
     );
+  console.log(data?.details);
 
   return (
     <View className="flex-1 bg-background p-3 md:p-6">
@@ -77,6 +78,7 @@ const TrackOrderScreen = () => {
             <P className="text-foreground">{data.userFullName}</P>
           </View>
         )}
+
         <OrderTrackingDetails order={data} />
       </ScrollView>
     </View>

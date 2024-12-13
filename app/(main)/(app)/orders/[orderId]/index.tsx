@@ -1,5 +1,5 @@
 import { Link, Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ActivityIndicator, RefreshControl, ScrollView, View } from 'react-native';
 
 import { useGetOrderById } from '@/api/order-api';
@@ -33,6 +33,8 @@ import { transformOrderDetails } from '@/data/order/get-orders';
 import useI18n from '@/hooks/useI81n';
 import { dateTimestampFormatter } from '@/utils/date';
 import AppBack from '@/components/app-back';
+import { ReceiptText } from 'lucide-react-native';
+import { cn } from '@/lib/utils';
 
 const OrderDetailScreen = () => {
   const accordionRef = useRef<View>(null);
@@ -223,6 +225,30 @@ const OrderDetailScreen = () => {
           {isweb && <OrderedItems order={order} />}
         </View>
       </ScrollView>
+      <View className="z-10 m-3 flex bg-background p-2 web:fixed web:bottom-0 web:left-0 web:w-full web:md:hidden">
+        <View className="w-[97.5%] flex-row items-center gap-2">
+          {isOrderChanged && (
+            <View className={!canShipOrder ? 'flex-1' : ''}>
+              <OrderChange
+                variant={'secondary'}
+                progress={order.orderProgress}
+                orderId={params.orderId as string}
+              />
+            </View>
+          )}
+          {trackingDetailsAvailable && (
+            <Link href={`/orders/${params.orderId}/track`} asChild>
+              <Button
+                variant={'secondary'}
+                className={cn('flex-row items-center gap-1', !canShipOrder ? 'flex-1' : '')}>
+                <ReceiptText size={15} color={'#15803d'} />
+                <P className="text-primary">Track Order</P>
+              </Button>
+            </Link>
+          )}
+          {canShipOrder && <UpdateTrackingInfo className="flex-1" order={order} />}
+        </View>
+      </View>
     </View>
   );
 };

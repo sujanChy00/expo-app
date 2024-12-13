@@ -1,5 +1,4 @@
 import { ColumnDef } from '@tanstack/react-table';
-import React from 'react';
 
 import { DataTable } from '../ui/data-table';
 import { P } from '../ui/typography';

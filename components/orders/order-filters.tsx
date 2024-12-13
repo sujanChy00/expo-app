@@ -59,6 +59,7 @@ export const OrderFilters = () => {
       </Pressable>
       <AppBottomSheet ref={ref} index={-1} snapPoints={['60%']}>
         <BottomSheetView className="flex-1 bg-background px-4 pt-4">
+          {/* TODO: Fix Wait payment */}
           {orderSortOptions.map((order) => (
             <TouchableOpacity key={order.value} onPress={() => onSelect(order.value)}>
               <View className="flex-row items-center justify-between px-2 py-3">

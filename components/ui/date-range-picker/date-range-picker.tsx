@@ -1,8 +1,8 @@
 import { format, lastDayOfMonth, startOfMonth } from 'date-fns';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, View } from 'react-native';
 import Calendar from 'react-native-calendar-range-picker';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, ButtonProps } from '../button';
 import { P } from '../typography';
@@ -39,6 +39,7 @@ export const DateRangePicker = ({
   );
   const [visible, setVisible] = useState(false);
   const { colorScheme } = useColorScheme();
+  const { bottom } = useSafeAreaInsets();
   return (
     <>
       <Button {...props} variant={props.variant || 'outline'} onPress={() => setVisible(true)}>
@@ -88,7 +89,9 @@ export const DateRangePicker = ({
               }}
             />
           </View>
-          <View className="flex-row items-center justify-between gap-3 bg-background p-3">
+          <View
+            className="flex-row items-center justify-between gap-3 bg-background p-3"
+            style={{ paddingBottom: bottom }}>
             <Button variant="outline" className="flex-1" onPress={() => setVisible(false)}>
               <P>Cancel</P>
             </Button>
