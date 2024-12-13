@@ -23,7 +23,7 @@ export const useDeleteMessage = () => {
   return useMutation({
     mutationFn: async (id: number) =>
       await fetcher<IGeneralResponse>({
-        url: `/order/comment/${id}`,
+        url: `/shop-message/${id}`,
         method: 'DELETE',
       }),
     onSuccess(data) {
@@ -34,7 +34,7 @@ export const useDeleteMessage = () => {
     onMutate: async (args) => {
       await queryClient.cancelQueries({ queryKey: ['UserMessage'] });
       const prevMsg = queryClient.getQueryData(['UserMessage']) as IOrderComment;
-      queryClient.setQueryData(['UserMessage'], (oldMsg) =>
+      queryClient.setQueryData(['UserMessage'], (oldMsg: IOrderComment[]) =>
         oldMsg
           ? (oldMsg as IOrderComment[]).filter((order) => order.orderCommentId !== args)
           : oldMsg
